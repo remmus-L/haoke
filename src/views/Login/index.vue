@@ -12,27 +12,13 @@
         v-model="username"
         name="username"
         placeholder="请输入账号"
-        :rules="[
-          { required: true, message: '请输入账号' },
-          {
-            pattern: /^[a-zA-Z0-9]{5,8}$/,
-            message: '用户名格式5-8位的数字和字母',
-          },
-        ]"
       />
       <van-field
         class="psd"
-        v-model="code"
+        v-model="password"
         type="password"
-        name="code"
+        name="password"
         placeholder="请输入密码"
-        :rules="[
-          { required: true, message: '请输入密码' },
-          {
-            pattern: /^[a-zA-Z0-9]{5,12}$/,
-            message: '密码格式5-12位的数字和字母',
-          },
-        ]"
       />
       <div style="margin: 16px">
         <van-button round block type="info" native-type="submit" class="tijiao"
@@ -45,19 +31,52 @@
 </template>
 
 <script>
+import { login } from '@/api/user'
 export default {
   created () { },
   data () {
     return {
-      username: '哈哈哈嘻嘻', // 手机号
-      code: '123456789' // 短信验证码
+      username: '',
+      password: '' // 短信验证码
     }
   },
-  methods: {},
-  computed: {},
-  watch: {},
-  filters: {},
-  components: {}
+  methods: {
+    async onSubmit (values) {
+      const a = /^[a-zA-Z0-9]{5,8}$/
+      const b = /^[a-zA-Z0-9]{5,12}$/
+      // console.log('submit', values)
+      if (this.username === '' || this.password === '') {
+        this.$toast('用户名或者密码不能为空')
+      } else if (!new RegExp(a).test(this.username)) {
+        this.$toast('用户名格式不对')
+      } else if (!new RegExp(b).test(this.password)) {
+        this.$toast('密码格式不对')
+      } else {
+        // 这里加我等下截图给你的方法
+        try {
+          // const res = await login({ username: this.username, password: this.password })
+          const res = await login(values)
+          console.log(res)
+          console.log(values)
+          this.$store.commit('setUser', res.data.data)
+          this.$toast('登录成功')
+          this.$router.push({ name: 'my' })
+        } catch (err) {
+          console.log(err)
+        }
+      }
+    }
+
+    // qdl () {
+    //   if (this.username === '' || this.code === '') {
+    //     return this.$toast('用户名或者密码不能为空')
+    //   } else if (this.username.length < 5 || this.username.length > 8) {
+    //     return this.$toast('用户名格式不对')
+    //   } else if (this.code.length < 5 || this.code.length > 12) {
+    //     return this.$toast('密码格式不对')
+    //   }
+    // }
+  }
 }
 </script>
 

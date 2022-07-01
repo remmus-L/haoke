@@ -6,6 +6,7 @@
 </template>
 
 <script>
+
 export default {
   created () { },
   data () {
@@ -15,7 +16,7 @@ export default {
   computed: {},
   watch: {},
   filters: {},
-  components: {}
+  components: { }
 }
 </script>
 

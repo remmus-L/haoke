@@ -3,7 +3,7 @@
     <div class="header">
       <div class="left">
         <span class="txt" @click="$router.push('/citylist')">上海</span
-        ><i class="iconfont icon-xialajiantou"></i>
+        ><i class="iconfont icon-xiala"></i>&nbsp;&nbsp;&nbsp;&nbsp;|
         <van-icon name="search" size="15" color="#9c9fa1" class="sear" />
         请输入小区或地址
       </div>
@@ -58,7 +58,7 @@ export default {
       padding-left: 12px;
     }
     .sear {
-      padding-left: 50px;
+      padding-left: 30px;
     }
   }
   .right {
@@ -73,7 +73,7 @@ export default {
   font-size: 0.6rem;
   color: #fff;
 }
-.icon-xialajiantou {
+.icon-xiala {
   color: #333;
 }
 // .nbar {

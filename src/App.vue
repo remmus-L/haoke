@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 一级占位符 -->
-    <router-view></router-view>
+    <router-view class="main"></router-view>
   </div>
 </template>
 
@@ -21,4 +21,7 @@ export default {
 </script>
 
 <style scoped lang='less'>
+.main{
+  padding-bottom: 100px;
+}
 </style>

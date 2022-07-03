@@ -1,45 +1,28 @@
 <template>
   <div>
-    <van-nav-bar title="城市列表" left-arrow fixed class="cityhd" />
+    <van-nav-bar
+      title="城市列表"
+      left-arrow
+      fixed
+      class="cityhd"
+      @click-left="$router.go(-1)"
+    />
     <van-index-bar :index-list="indexList" class="citylt">
+    <!-- van-index-anchor代表的就是一个锚点  可以跳转 -->
       <van-index-anchor index="#">当前城市</van-index-anchor>
       <van-cell title="文本" />
-      <van-cell title="文本" />
-      <van-cell title="文本" />
 
-      <van-index-anchor  index="热">热门城市</van-index-anchor>
+      <van-index-anchor index="热">热门城市</van-index-anchor>
       <van-cell title="文本" />
       <van-cell title="文本" />
       <van-cell title="文本" />
+      <!-- 这个div是A-Z的 -->
       <div v-for="(item, index) in dataList" :key="index">
         <van-index-anchor :index="item" />
         <van-cell title="文本" />
         <van-cell title="文本" />
         <van-cell title="文本" />
       </div>
-
-      <!-- <van-index-anchor index="B" />
-      <van-cell title="文本" />
-      <van-cell title="文本" />
-      <van-cell title="文本" />
-
-      <van-index-anchor index="C" />
-      <van-cell title="文本" />
-      <van-cell title="文本" />
-      <van-cell title="文本" />
-      <van-index-anchor index="D" />
-      <van-cell title="文本" />
-      <van-cell title="文本" />
-      <van-cell title="文本" />
-      <van-index-anchor index="E" />
-      <van-cell title="文本" />
-      <van-cell title="文本" />
-      <van-cell title="文本" />
-      <van-index-anchor index="F" />
-      <van-cell title="文本" />
-      <van-cell title="文本" />
-      <van-cell title="文本" />
-      ... -->
     </van-index-bar>
   </div>
 </template>

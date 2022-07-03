@@ -1,8 +1,8 @@
 <template>
   <div>
-    <van-nav-bar title="账号登录">
+    <van-nav-bar title="账号登录" @click-left="$router.back()">
       <template v-slot:left>
-        <van-icon name="arrow-left" />
+        <van-icon name="arrow-left"/>
       </template>
     </van-nav-bar>
     <div class="blanck"></div>
@@ -58,7 +58,8 @@ export default {
           const res = await login(values)
           console.log(res)
           console.log(values)
-          this.$store.commit('setUser', res.data.data)
+          // 将token值传到vuex中  这里值是data.body中
+          this.$store.commit('setUser', res.data.body)
           this.$toast('登录成功')
           this.$router.push({ name: 'my' })
         } catch (err) {

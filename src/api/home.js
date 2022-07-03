@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+// 首页租房小组
 export const getHomeGroup = () => {
   return request({
     url: '/home/groups'
@@ -12,3 +13,10 @@ export const getHomeGroup = () => {
 //     url: 'channels'
 //   })
 // }
+// 首页轮播图 无参数 GET请求
+export const getSwiper = () => {
+  return request({
+    url: '/home/swiper'
+    // params: area
+  })
+}

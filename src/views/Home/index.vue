@@ -1,22 +1,10 @@
 <template>
   <div>
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="gray">
-      <van-swipe-item
+      <van-swipe-item v-for="item in swiperPic" :key="item.id"
         ><img
           class="lbpic"
-          src="http://liufusong.top:8080/img/swiper/3.png"
-          alt=""
-      /></van-swipe-item>
-      <van-swipe-item
-        ><img
-          class="lbpic"
-          src="http://liufusong.top:8080/img/swiper/2.png"
-          alt=""
-      /></van-swipe-item>
-      <van-swipe-item
-        ><img
-          class="lbpic"
-          src="http://liufusong.top:8080/img/swiper/1.png"
+          :src="'http://liufusong.top:8080' + item.imgSrc"
           alt=""
       /></van-swipe-item>
     </van-swipe>
@@ -59,22 +47,33 @@
 
 <script>
 import MySelect from '@/components/MySelect.vue'
-import { getHomeGroup } from '@/api/home'
+import { getHomeGroup, getSwiper } from '@/api/home'
 export default {
   created () {
     this.getHomeGroup()
+    this.getSwiper()
   },
   data () {
     return {
-      groupList: []
+      groupList: [],
+      swiperPic: []
     }
   },
   methods: {
     async getHomeGroup () {
       try {
         const res = await getHomeGroup()
-        console.log('res', res)
+        // console.log('res', res)
         this.groupList = res.data.body
+      } catch (err) {
+        console.log(err)
+      }
+    },
+    async getSwiper () {
+      try {
+        const res = await getSwiper()
+        console.log('轮播图', res)
+        this.swiperPic = res.data.body
       } catch (err) {
         console.log(err)
       }
